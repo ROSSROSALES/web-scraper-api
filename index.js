@@ -1,15 +1,10 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
 
 app.get("/", (req, res) => {
-    res.send("Express on Vercel");
+    res.send("Express on Vercel, small change");
   });
-  
-  app.listen(5000, () => {
-    console.log("Running on port 5000.");
-  });
-  
 
 //app.get("/", async function(req, res, next) {
 //
