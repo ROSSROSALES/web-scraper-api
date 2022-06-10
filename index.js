@@ -17,7 +17,7 @@ app.get("/", async function(req, res, next) {
 });
 
 app.listen(5000, () => {
-    console.log(running on port 5000);
+    console.log('running on port 5000');
 });
 
 module.exports = app;
