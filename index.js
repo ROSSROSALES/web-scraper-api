@@ -32,7 +32,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/data', (req,res) => {
-    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', config)
+    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting')
         .then((response) => {
             const html = response.data
             const $ = cheerio.load(html)
