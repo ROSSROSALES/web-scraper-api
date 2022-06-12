@@ -29,8 +29,8 @@ app.get('/', (req,res) => {
     res.json('Welcome to my API')
 })
 
-app.get('/data', async (req,res) => {
-    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', config)
+app.get('/data', (req,res) => {
+    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting')
         .then((response) => {
             const html = response.data
             const $ = cheerio.load(html)
@@ -64,14 +64,17 @@ app.get('/data', async (req,res) => {
                 info[index] = { date, state, city, killed, injured };
                 data.push(info)
             })
-            res.json(data);
-        }).catch(err => {
+            
+        })
+        
+        .catch(err => {
             console.log(err.code);
             console.log(err.message);
             console.log(err.stack);
         })
         
-});
+        res.json(data);});
+
 
 app.listen(PORT, () => {
     console.log('server is running on PORT ' + PORT)
