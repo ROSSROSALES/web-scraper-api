@@ -4,6 +4,13 @@ const express = require('express');
 const cheerio = require('cheerio');
 const app = express()
 
+const config = {
+    headers:{
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
+      'accept-language': 'en-US,en;q=0.9'
+    }
+  };
+
 const data = []
 
 app.get('/', (req,res) => {
@@ -11,7 +18,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/data', async (req,res) => {
-    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', { timeout: 2000})
+    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', config, { timeout: 2000})
         .then((response) => {
             const html = response.data
             const $ = cheerio.load(html)
