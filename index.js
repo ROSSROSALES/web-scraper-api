@@ -7,8 +7,6 @@ const app = express()
 const data = []
 
 app.get('/', (req,res) => {
-    //res.json('This is the Mass Shooting API')
-
     axios.get('https://www.gunviolencearchive.org/reports/mass-shooting')
         .then((response) => {
             const html = response.data
@@ -40,15 +38,14 @@ app.get('/', (req,res) => {
                     .eq(6)
                     .text();
                 info[index] = { date, state, city, killed, injured };
-            
             })
             data.push(info)
+            res.json(data);
         }).catch(err => console.log(err))
-        res.json(data);
+        
 });
-
 app.listen(PORT, () => {
-    console.log('server is working')
+    console.log('server is running')
 });
 
 
