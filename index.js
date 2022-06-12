@@ -38,8 +38,8 @@ app.get('/', (req,res) => {
                     .eq(6)
                     .text();
                 info[index] = { date, state, city, killed, injured };
+                data.push(info)
             })
-            data.push(info)
             res.json(data);
         }).catch(err => console.log(err))
         
