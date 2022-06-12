@@ -46,7 +46,7 @@ app.get('/data', async (req,res) => {
                 data.push(info)
             })
             res.json(data);
-        })//.catch(err => console.log(err))
+        }).catch(err => console.log(err))
         
 });
 
