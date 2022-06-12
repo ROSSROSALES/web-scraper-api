@@ -7,6 +7,10 @@ const app = express()
 const data = []
 
 app.get('/', (req,res) => {
+    res.json('Welcome to my API')
+})
+
+app.get('/data', (req,res) => {
     axios.get('https://www.gunviolencearchive.org/reports/mass-shooting')
         .then((response) => {
             const html = response.data
