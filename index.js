@@ -6,18 +6,18 @@ const app = express()
 
 const config = {
     headers:{
-        'X-Originating-IP': '127.0.0.1'
-        'X-Forwarded-For': '127.0.0.1'
-        'X-Forwarded': '127.0.0.1'
-        'Forwarded-For': '127.0.0.1'
-        'X-Remote-IP': '127.0.0.1'
-        'X-Remote-Addr': '127.0.0.1'
-        'X-ProxyUser-Ip': '127.0.0.1'
-        'X-Original-URL': '127.0.0.1'
-        'Client-IP': '127.0.0.1'
-        'True-Client-IP': '127.0.0.1'
-        'Cluster-Client-IP': '127.0.0.1'
-        'X-ProxyUser-Ip': '127.0.0.1'
+        'X-Originating-IP': '127.0.0.1',
+        'X-Forwarded-For': '127.0.0.1',
+        'X-Forwarded': '127.0.0.1',
+        'Forwarded-For': '127.0.0.1',
+        'X-Remote-IP': '127.0.0.1',
+        'X-Remote-Addr': '127.0.0.1',
+        'X-ProxyUser-Ip': '127.0.0.1',
+        'X-Original-URL': '127.0.0.1',
+        'Client-IP': '127.0.0.1',
+        'True-Client-IP': '127.0.0.1',
+        'Cluster-Client-IP': '127.0.0.1',
+        'X-ProxyUser-Ip': '127.0.0.1',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
         'accept-language': 'en-US,en;q=0.9'
     }
