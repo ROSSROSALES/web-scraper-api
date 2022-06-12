@@ -1,4 +1,4 @@
-const PORT = process.env.port || 8000
+const PORT = process.env.port
 const axios = require('axios');
 const express = require('express');
 const cheerio = require('cheerio');
