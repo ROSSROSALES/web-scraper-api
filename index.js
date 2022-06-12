@@ -1,4 +1,5 @@
-const PORT = process.env.port
+const PORT = process.env.PORT || 8000;
+const HOST = '0.0.0.0';
 const axios = require('axios');
 const express = require('express');
 const cheerio = require('cheerio');
@@ -75,7 +76,7 @@ app.get('/data', (req,res) => {
 });
 
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
     console.log('server is running on PORT ' + PORT)
 });
 
