@@ -18,7 +18,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/data', async (req,res) => {
-    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', config, { timeout: 2000})
+    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', config)
         .then((response) => {
             const html = response.data
             const $ = cheerio.load(html)
