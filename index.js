@@ -17,34 +17,35 @@ app.get('/data', (req,res) => {
             const $ = cheerio.load(html)
             const info = {}
 
-            $('tr').each( (index, element) => {
-                const date = $(element)  
-                    .children('td')
-                    .eq(1)
-                    .text() ;
-                    info[index] = { date };
-                const state = $(element)
-                    .children('td')
-                    .eq(2)
-                    .text();
-
-                const city = $(element)
-                    .children('td')
-                    .eq(3)
-                    .text();
-
-                const killed = $(element)
-                    .children('td')
-                    .eq(5)
-                    .text();
-                const injured = $(element)
-                    .children('td')
-                    .eq(6)
-                    .text();
-                info[index] = { date, state, city, killed, injured };
-                data.push(info)
-            })
-            res.json(data);
+            res.json(html)
+        //    $('tr').each( (index, element) => {
+        //        const date = $(element)  
+        //            .children('td')
+        //            .eq(1)
+        //            .text() ;
+        //            info[index] = { date };
+        //        const state = $(element)
+        //            .children('td')
+        //            .eq(2)
+        //            .text();
+//
+        //        const city = $(element)
+        //            .children('td')
+        //            .eq(3)
+        //            .text();
+//
+        //        const killed = $(element)
+        //            .children('td')
+        //            .eq(5)
+        //            .text();
+        //        const injured = $(element)
+        //            .children('td')
+        //            .eq(6)
+        //            .text();
+        //        info[index] = { date, state, city, killed, injured };
+        //        data.push(info)
+        //    })
+        //    res.json(data);
         }).catch(err => console.log(err))
         
 });
