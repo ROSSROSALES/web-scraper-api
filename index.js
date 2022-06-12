@@ -6,21 +6,22 @@ const app = express()
 
 const config = {
     headers:{
-        'X-Originating-IP': '127.0.0.1',
-        'X-Forwarded-For': '127.0.0.1',
-        'X-Forwarded': '127.0.0.1',
-        'Forwarded-For': '127.0.0.1',
-        'X-Remote-IP': '127.0.0.1',
-        'X-Remote-Addr': '127.0.0.1',
-        'X-ProxyUser-Ip': '127.0.0.1',
-        'X-Original-URL': '127.0.0.1',
-        'Client-IP': '127.0.0.1',
-        'True-Client-IP': '127.0.0.1',
-        'Cluster-Client-IP': '127.0.0.1',
-        'X-ProxyUser-Ip': '127.0.0.1',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
-        'accept-language': 'en-US,en;q=0.9'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36'
+        //'X-Originating-IP': '127.0.0.1',
+        //'X-Forwarded-For': '127.0.0.1',
+        //'X-Forwarded': '127.0.0.1',
+        //'Forwarded-For': '127.0.0.1',
+        //'X-Remote-IP': '127.0.0.1',
+        //'X-Remote-Addr': '127.0.0.1',
+        //'X-ProxyUser-Ip': '127.0.0.1',
+        //'X-Original-URL': '127.0.0.1',
+        //'Client-IP': '127.0.0.1',
+        //'True-Client-IP': '127.0.0.1',
+        //'Cluster-Client-IP': '127.0.0.1',
+        //'X-ProxyUser-Ip': '127.0.0.1',
+        //'accept-language': 'en-US,en;q=0.9'
     }
+    
   };
 
 const data = []
@@ -30,7 +31,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/data', (req,res) => {
-    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting')
+    axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', config)
         .then((response) => {
             const html = response.data
             const $ = cheerio.load(html)
@@ -64,16 +65,14 @@ app.get('/data', (req,res) => {
                 info[index] = { date, state, city, killed, injured };
                 data.push(info)
             })
-            
-        })
-        
-        .catch(err => {
+            res.json(data);
+        }).catch(err => {
             console.log(err.code);
             console.log(err.message);
             console.log(err.stack);
-        })
+    })
         
-        res.json(data);});
+});
 
 
 app.listen(PORT, () => {
