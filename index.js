@@ -4,16 +4,18 @@ const axios = require('axios');
 const express = require('express');
 const cheerio = require('cheerio');
 const app = express()
-
+var timeout = require('connect-timeout')
 
 
 app.get('/', (req,res) => {
     res.json('Welcome to my API')
 })
 
-app.get('/data', (req,res) => {
+app.get('/data', timeout('5s'), (req,res) => {
+    if (req.timedout) return
     axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36' }  })
         .then((response) => {
+            
             const html = response.data;
             const $ = cheerio.load(html);
             const info = {};
