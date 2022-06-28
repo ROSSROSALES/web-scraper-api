@@ -45,7 +45,9 @@ app.get('/data', timeout('5s'), (req,res) => {
                     .text();
                 info[index] = { date, state, city, killed, injured };
             });
-            res.json(info);
+            res.end( JSON.stringify(info));
+
+            
 
         }).catch(err => {
             console.log(err.code);
