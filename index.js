@@ -6,7 +6,6 @@ const cheerio = require('cheerio');
 const app = express()
 
 
-const data = []
 
 app.get('/', (req,res) => {
     res.json('Welcome to my API')
@@ -15,22 +14,20 @@ app.get('/', (req,res) => {
 app.get('/data', (req,res) => {
     axios.get('https://www.gunviolencearchive.org/reports/mass-shooting', { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36' }  })
         .then((response) => {
-            const html = response.data
-            const $ = cheerio.load(html)
-            const info = {}
+            const html = response.data;
+            const $ = cheerio.load(html);
+            const info = {};
 
             console.log($('tr').count)
-            $("table > tbody > tr").slice(0,3).each( (index, element) => {
+            $("table > tbody > tr").each( (index, element) => {
                 const date = $(element)  
                     .children('td')
                     .eq(1)
-                    .text() ;
-                    info[index] = { date };
+                    .text();
                 const state = $(element)
                     .children('td')
                     .eq(2)
                     .text();
-
                 const city = $(element)
                     .children('td')
                     .eq(3)
@@ -45,9 +42,9 @@ app.get('/data', (req,res) => {
                     .eq(6)
                     .text();
                 info[index] = { date, state, city, killed, injured };
-                data.push(info)
-            })
-            res.json(data);
+            });
+            res.json(info);
+
         }).catch(err => {
             console.log(err.code);
             console.log(err.message);
@@ -59,5 +56,3 @@ app.get('/data', (req,res) => {
 app.listen(PORT, HOST, () => {
     console.log('server is running on PORT ' + PORT)
 });
-
-
