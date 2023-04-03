@@ -1,4 +1,4 @@
-# recent-mass-shooting-api
+# web-scraper-api
 
 This API webscrapes data for the most recent mass shooting in the USA.  
 /data domain path will return in JSON
